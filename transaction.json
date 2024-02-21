@@ -1,0 +1,5 @@
+{
+	"chet": "chet name or id: String or Int",
+	"category": "category: String",
+	"sum": "sum: Float"
+}

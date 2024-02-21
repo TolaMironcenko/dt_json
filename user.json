@@ -1,0 +1,5 @@
+{
+	"name": "name: String",
+	"username": "username: String",
+	"hashed_password": "hashed_password: String"
+}
