@@ -29,7 +29,7 @@ func getAllChets() -> [Chet] {
 	for chet: URL in allChetsUrl {
 		var chetarr: [String.SubSequence] = chet.absoluteString.split(separator: "/")
 		chetarr.removeFirst()
-		if (String(chetarr[chetarr.count - 1]) != "main") {
+		if (String(chetarr[chetarr.count - 1]) != "main" && String(chetarr[chetarr.count - 1]) != "users") {
 			let chetDataString: String = readFromFile(fileName: "/" + chetarr.joined(separator: "/") + "/chet")
 			let chetData: Chet = try! JSONDecoder().decode(Chet.self, from: chetDataString.data(using: .utf8)!)
 			allChets.append(chetData)

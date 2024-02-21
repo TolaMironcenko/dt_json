@@ -76,13 +76,19 @@ func createTransaction(chet: String, category: String = "No category", sum: Floa
 
 func deleteTransaction(chet: String, id: String) -> Bool {
 	let transactionsDataString: String = readFromFile(fileName: getDataDirectory() + "data/" + chet + "/transactions")
+	if (transactionsDataString == "") {
+		return false
+	}
 	var transactions: [Transaction] = []
 	do {
 		transactions = try JSONDecoder().decode([Transaction].self, from: transactionsDataString.data(using: .utf8)!)
 	} catch {
 		transactions = []
 	}
-	// let deleteTransactionData: [Transaction] = transactions.filter {$0.id == id}
+	let deleteTransactionData: [Transaction] = transactions.filter {$0.id == id}
+	if (deleteTransactionData.isEmpty) {
+		return false
+	}
 	transactions = transactions.filter {$0.id != id}
 	let transactionsJson = try! JSONEncoder().encode(transactions)
 	let transactionsJsonString: String = String(data: transactionsJson, encoding: .utf8)!
